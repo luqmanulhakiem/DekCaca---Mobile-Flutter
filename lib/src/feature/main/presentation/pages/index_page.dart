@@ -2,9 +2,8 @@ import 'package:dekcaca_app/src/core/themes/app_color.dart';
 import 'package:dekcaca_app/src/core/values/strings.dart';
 import 'package:dekcaca_app/src/feature/main/presentation/pages/main_page.dart';
 import 'package:dekcaca_app/src/feature/main/presentation/pages/search_page.dart';
-import 'package:dekcaca_app/src/feature/profile/presentation/pages/profile_page.dart';
+import 'package:dekcaca_app/src/feature/main/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IndexPage extends StatefulWidget {
@@ -19,6 +18,7 @@ class _IndexPageState extends State<IndexPage> {
   final List<Widget> pages = [
     const MainPage(),
     const SearchPage(),
+    const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _IndexPageState extends State<IndexPage> {
                     Strings.appName,
                     style: GoogleFonts.poppins(
                       color: AppColor.secondary,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 ],
@@ -56,27 +56,12 @@ class _IndexPageState extends State<IndexPage> {
             ),
             Flexible(
                 flex: 2,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(const ProfilePage(),
-                        transition: Transition.rightToLeft);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey,
-                      border: Border.all(color: AppColor.secondary, width: 2),
-                    ),
-                    height: 50,
-                    width: 50,
-                    child: ClipOval(
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: Image.network(
-                            "https://plus.unsplash.com/premium_photo-1724296697228-ae418d019540?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxOXx8fGVufDB8fHx8fA%3D%3D"),
-                      ),
-                    ),
-                  ),
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Image.asset("assets/images/logosmk.png")),
                 )),
           ],
         ),
@@ -94,13 +79,15 @@ class _IndexPageState extends State<IndexPage> {
       currentIndex: currentPage,
       backgroundColor: AppColor.primary,
       selectedItemColor: AppColor.secondary,
-      unselectedItemColor: Colors.grey.shade300,
+      // unselectedItemColor: Colors.grey.shade300,
+      unselectedItemColor: Colors.grey.shade400,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       selectedIconTheme: IconThemeData(size: 30),
       items: const [
         BottomNavigationBarItem(label: "Beranda", icon: Icon(Icons.home)),
         BottomNavigationBarItem(label: "Pencarian", icon: Icon(Icons.search)),
+        BottomNavigationBarItem(label: "Profil", icon: Icon(Icons.person)),
       ],
     );
   }

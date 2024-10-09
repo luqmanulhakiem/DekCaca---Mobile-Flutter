@@ -29,6 +29,7 @@ class _MainPageState extends State<MainPage> {
 
   void _getLocation() async {
     final position = await determinePosition();
+    if (!mounted) return;
     setState(() {
       lat = position.latitude;
       long = position.longitude;
@@ -90,19 +91,6 @@ class _MainPageState extends State<MainPage> {
                             ],
                           ),
                         ),
-                        // Flexible(flex: 1, child: Gap(gap: 10)),
-                        // TODO: Nanti aktifkan kembali ini
-                        // Flexible(
-                        //   flex: 4,
-                        //   child: Container(
-                        //     height: 50,
-                        //     width: 50,
-                        //     child: FittedBox(
-                        //         fit: BoxFit.fill,
-                        //         clipBehavior: Clip.hardEdge,
-                        //         child: Image.asset("assets/images/logosmk.png")),
-                        //   ),
-                        // )
                       ],
                     ),
                     // Section 2
@@ -237,7 +225,7 @@ class _MainPageState extends State<MainPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: Text(
-              "Hari ini dan 5 hari kedepan",
+              "Perkiraan 5 hari",
               style: GoogleFonts.poppins(
                   fontSize: 20, fontWeight: FontWeight.w500),
             ),
@@ -268,9 +256,17 @@ class _MainPageState extends State<MainPage> {
                                   return Container(
                                       margin: const EdgeInsets.all(5),
                                       decoration: BoxDecoration(
-                                          color: AppColor.primary,
-                                          borderRadius:
-                                              BorderRadius.circular(16)),
+                                        color: AppColor.primary,
+                                        borderRadius: BorderRadius.circular(16),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: AppColor.primary
+                                                  .withOpacity(0.4),
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset: const Offset(2, 3))
+                                        ],
+                                      ),
                                       child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Column(children: [

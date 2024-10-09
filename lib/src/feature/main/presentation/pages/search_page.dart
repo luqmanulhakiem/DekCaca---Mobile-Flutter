@@ -1,9 +1,12 @@
 import 'package:dekcaca_app/src/core/themes/app_color.dart';
+import 'package:dekcaca_app/src/feature/detail/presentation/pages/detail_page.dart';
 import 'package:dekcaca_app/src/feature/main/presentation/blocs/search_city/search_city_bloc.dart';
 import 'package:dekcaca_app/src/shared/presentation/widgets/gap.dart';
 import 'package:dekcaca_app/src/shared/presentation/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' as getx;
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
 
@@ -62,7 +65,9 @@ class _SearchPageState extends State<SearchPage> {
                           return _itemSearch(
                               data[index].cityName,
                               data[index].administrativeAreaName,
-                              data[index].countryName);
+                              data[index].countryName,
+                              data[index].latitude,
+                              data[index].longitude);
                         }),
                   ],
                 );
@@ -80,8 +85,15 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  Widget _itemSearch(String namaKota, String provinsi, String negara) {
+  Widget _itemSearch(String namaKota, String provinsi, String negara,
+      double latitude, double longitude) {
     return InkWell(
+      onTap: () {
+        getx.Get.to(
+            DetailPage(
+                title: namaKota, latitude: latitude, longitude: longitude),
+            transition: getx.Transition.rightToLeft);
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
         height: 70,

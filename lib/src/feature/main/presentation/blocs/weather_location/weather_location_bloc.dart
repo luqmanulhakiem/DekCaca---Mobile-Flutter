@@ -19,7 +19,7 @@ class WeatherLocationBloc
         emit(WeatherLocationLoaded(weather: resp));
         await Future.delayed(const Duration(seconds: 5));
       } catch (e) {
-        emit(WeatherLocationFailure());
+        emit(WeatherLocationFailure(error: e.toString()));
       }
     });
   }

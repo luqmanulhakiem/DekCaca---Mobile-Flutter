@@ -13,4 +13,8 @@ final class WeatherLocationLoaded extends WeatherLocationState {
   WeatherLocationLoaded({required this.weather});
 }
 
-final class WeatherLocationFailure extends WeatherLocationState {}
+final class WeatherLocationFailure extends WeatherLocationState {
+  final String error;
+
+  WeatherLocationFailure({required this.error});
+}
